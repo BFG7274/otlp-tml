@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+service StoreData {
+  rpc GetItems (google.protobuf.Empty) returns (ItemList) {}
+  rpc GetItem (GetItemRequest) returns (Item) {}
+  rpc UpdateItem (Item) returns (Response) {}
+  rpc DeleteItem (Item) returns (Response) {}
+}
+
+message Item {
+    int64 id =1;
+    string name =2;
+    int64 price=3;
+    int64 num=4;
+}
+
+message ItemList {
+    repeated Item item =1;
+}
+
+message  GetItemRequest {
+  int64 id =1;
+}
+
+message Response {
+  bool status=1;
+  string msg=2;
+}
